@@ -1,0 +1,60 @@
+#!/bin/bash
+##########################
+#### CREATED BY HARU #####
+##########################
+# fonts
+font_blue="\033[34m"
+font_green="\033[32m"
+font_red="\033[31m"
+
+# background
+back_white="\033[47m"
+
+# styles
+st_none="\033[0m"
+st_bold="\033[1m"
+st_lowIntens="\033[2m"
+st_underline="\033[4m"
+st_blink="\033[5m"
+st_reverse="\033[7m"
+st_invisible="\033[8m"
+
+# none
+f_none="\033[0m"
+
+# Adding files
+echo -e "$font_blue$back_white Write the name of the files you want to upload to GITHUB: $f_none"
+read -p ""
+files="$REPLY"
+git add $files
+
+# Making a commit
+echo -e "$font_green$back_white Write a commit to GITHUB: $f_none"
+read -p ""
+commit="$REPLY"
+git commit -m "$commit"
+
+# Selecting the branch
+echo -e "$font_blue$back_white Write the BRANCH where you want to upload: $f_none"
+read -p ""
+branch="$REPLY"
+# Creating a variable for a temp file
+ERROR_OUT="err_out"
+# Removing previous temp file if exist
+rm -f $ERROR_OUT
+git push origin $branch 2> $ERROR_OUT
+
+# If there is an error when the user put it's username or password
+# We put it in a bucle until the command read the username and password
+while grep -q "fatal: Authentication failed for" $ERROR_OUT
+do
+	echo -e "$font_red$back_white The USERNAME and/or PASSWORD are INCORRECT $f_none"
+	cat $ERROR_OUT
+	echo -e "$font_green$back_white Let's try again: $f_none"
+	rm $ERROR_OUT
+	git push origin $branch 2> $ERROR_OUT
+done
+
+cat $ERROR_OUT
+rm $ERROR_OUT
+echo -e "$font_green$back_white THANKS TO USE THIS HARU-PROGRAM $f_none"

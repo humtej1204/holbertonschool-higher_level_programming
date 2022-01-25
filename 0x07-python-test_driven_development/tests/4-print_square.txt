@@ -1,0 +1,32 @@
+``print_square`` module
+======================
+3. Print square
+======================
+Write a function that prints a square with the character #.
+    * Prototype: def print_square(size):
+    * size is the size length of the print_square
+    * size must be an integer
+    * You are not allowed to import any module
+======================
+>>> print_square = __import__('4-print_square').print_square
+
+>>> size = None
+>>> print_square(size)
+Traceback (most recent call last):
+  ...
+TypeError: size must be an integer
+
+>>> size = 0
+>>> print_square(size)
+
+>>> size = -1
+>>> print_square(size)
+Traceback (most recent call last):
+  ...
+ValueError: size must be >= 0
+>>> size = -13.5
+>>> print_square(size)
+Traceback (most recent call last):
+  ...
+TypeError: size must be an integer
+>>>

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-"""Creting the function add_integer"""
+"""Creting the Function add_integer"""
 
 
 def add_integer(a, b=98):

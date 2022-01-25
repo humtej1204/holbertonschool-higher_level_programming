@@ -1,0 +1,48 @@
+``text_indentation`` module
+======================
+4. Text indentation
+======================
+Write a function that prints a text with 2 new lines after each of these characters: ., ? and :
+    * Prototype: def text_indentation(text):
+    * text must be a string
+    * There should be no space at the beginning or at the end of each printed line
+    * You are not allowed to import any module
+======================
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+>>> text = "Hola. Mi nombre es Haru. Cual es el tuyo?"
+>>> text_indentation(text)
+Hola.
+<BLANKLINE>
+Mi nombre es Haru.
+<BLANKLINE>
+Cual es el tuyo?
+<BLANKLINE>
+
+>>> text = "Hola. Mi nombre es Haru. Cual es el tuyo"
+>>> text_indentation(text)
+Hola.
+<BLANKLINE>
+Mi nombre es Haru.
+<BLANKLINE>
+Cual es el tuyo
+
+>>> text = 10
+>>> text_indentation(text)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 5, in text_indentation
+TypeError: text must be a string
+
+>>> text = "5"
+>>> text_indentation(text)
+5
+
+>>> text = "Hola.             Mi nombre es Haru.           Cual es el tuyo?            "
+>>> text_indentation(text)
+Hola.
+<BLANKLINE>
+Mi nombre es Haru.
+<BLANKLINE>
+Cual es el tuyo?
+<BLANKLINE>

@@ -55,9 +55,9 @@ class Rectangle:
         else:
             printable = ((("#" * self.width) + "\n") * self.height)
             return (printable[:-1])
-            #return(((("#" * self.width) + "\n") * self.height)[:-1])
+            # return(((("#" * self.width) + "\n") * self.height)[:-1])
 
     def __repr__(self):
         '''Defining __repr__ Method'''
         return "Rectangle({}, {})".format(self.width, self.height)
-        #return 'Rectangle(' + str(self.width) + ', ' + str(self.height) + ')'
+        # return 'Rectangle(' + str(self.width) + ', ' + str(self.height) + ')'

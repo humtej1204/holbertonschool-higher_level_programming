@@ -1,0 +1,66 @@
+``add_integer`` module
+======================
+0. Integers addition
+======================
+Write a function that adds 2 integers.
+    Prototype: def add_integer(a, b=98):
+    * a and b must be integers or floats, otherwise raise a TypeError exception with the message a must be an integer or b must be an integer
+    * a and b must be first casted to integers if they are float
+    * Returns an integer: the addition of a and b
+    * You are not allowed to import any module
+======================
+
+>>> add_integer = __import__('0-add_integer').add_integer
+
+>>> add_integer(7, 3)
+10
+>>> add_integer(7.4, 3.6)
+10
+>>> add_integer(7, 3.6)
+10
+>>> add_integer(7.4, 3)
+10
+>>> add_integer(12, -2)
+10
+
+>>> add_integer(, -2)
+Traceback (most recent call last):
+...
+SyntaxError: invalid syntax
+>>> add_integer(-2, )
+96
+>>> add_integer()
+Traceback (most recent call last):
+...
+TypeError: add_integer() missing 1 required positional argument: 'a'
+
+>>> add_integer("5", 5)
+Traceback (most recent call last):
+  ...
+TypeError: a must be an integer
+>>> add_integer(5, "5")
+Traceback (most recent call last):
+  ...
+TypeError: b must be an integer
+>>> add_integer("5", "5")
+Traceback (most recent call last):
+  ...
+TypeError: a must be an integer
+
+>>> a = float('nan')
+>>> b = 10
+>>> add_integer(a, b)
+Traceback (most recent call last):
+  ...
+ValueError: cannot convert float NaN to integer
+>>> a = float('inf')
+>>> b = 10
+>>> add_integer(a, b)
+Traceback (most recent call last):
+  ...
+OverflowError: cannot convert float infinity to integer
+
+>>> add_integer(5, 3j)
+Traceback (most recent call last):
+  ...
+TypeError: b must be an integer

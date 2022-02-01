@@ -1,0 +1,69 @@
+vi ``7-base_geometry``
+======================
+7. Integer validator
+======================
+Write a class BaseGeometry (based on 6-base_geometry.py).
+    * Public instance method: def area(self): that raises an Exception with the message area() is not implemented
+    * Public instance method: def integer_validator(self, name, value): that validates value:
+        * you can assume name is always a string
+        * if value is not an integer: raise a TypeError exception
+        * if value is less or equal to 0: raise a ValueError exception
+    You are not allowed to import any module
+======================
+    >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+    >>> bg = BaseGeometry()
+    >>> bg.integer_validator("my_int", 7)
+    >>> bg.integer_validator("something", 12)
+    >>> bg.integer_validator("age", 0)
+    Traceback (most recent call last):
+    ...
+    ValueError: age must be greater than 0
+    >>> bg.integer_validator("name", "Monty")
+    Traceback (most recent call last):
+    ...
+    TypeError: name must be an integer
+    >>> bg.integer_validator("name", [3])
+    Traceback (most recent call last):
+    ...
+    TypeError: name must be an integer
+    >>> bg.integer_validator("name", {7,8})
+    Traceback (most recent call last):
+    ...
+    TypeError: name must be an integer
+    >>> bg.integer_validator("name", (7, ))
+    Traceback (most recent call last):
+    ...
+    TypeError: name must be an integer
+    >>> bg.integer_validator("name", None)
+    Traceback (most recent call last):
+    ...
+    TypeError: name must be an integer
+    >>> bg.integer_validator("num", "3")
+    Traceback (most recent call last):
+    ...
+    TypeError: num must be an integer
+    >>> bg.integer_validator("neg_num", -3)
+    Traceback (most recent call last):
+    ...
+    ValueError: neg_num must be greater than 0
+    >>> bg.integer_validator("float", 7.3)
+    Traceback (most recent call last):
+    ...
+    TypeError: float must be an integer
+    >>> bg.integer_validator("neg_float", -3.5)
+    Traceback (most recent call last):
+    ...
+    TypeError: neg_float must be an integer
+    >>> bg.integer_validator("bool", True)
+    Traceback (most recent call last):
+    ...
+    TypeError: bool must be an integer
+    >>> bg.integer_validator("age")
+    Traceback (most recent call last):
+    ...
+    TypeError: integer_validator() missing 1 required positional argument: 'value'
+    >>> bg.area()
+    Traceback (most recent call last):
+    ...
+    Exception: area() is not implemented

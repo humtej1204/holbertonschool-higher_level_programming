@@ -11,9 +11,9 @@ class Square(Rectangle):
 
     def __init__(self, size):
         '''Initializing atributes'''
+        self.integer_validator("size", size)
         self.__size = size
-        super().__init__(size, size)
-        super().integer_validator("size", size)
+        super().__init__(self.__size, self.__size)
 
     def __str__(self):
         '''Defining __str__ Method'''

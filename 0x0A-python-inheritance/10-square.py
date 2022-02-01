@@ -47,3 +47,7 @@ class Square(Rectangle):
         '''Initializing atributes'''
         super().__init__(size, size)
         super().integer_validator("size", size)
+
+    def area(self):
+        """Return the area of the square"""
+        return self.__size ** 2

@@ -7,18 +7,17 @@ def pascal_triangle(n):
     """function that returns a list of lists of integers
     representing the Pascal’s triangle of n:"""
 
+    t_pascal = list()
     if n <= 0:
-        return []
+        return (t_pascal)
 
-    rest = []
-    tmp = []
-    for x in range(n):
-        row = []
-        for y in range(x + 1):
-            if x == 0 or y == 0 or x == y:
-                row.append(1)
-            else:
-                row.append(tmp[x] + tmp[x - 1])
-            tmp = row
-            rest.append(row)
-    return rest
+    for i in range(1, n + 1):
+        t_pascal.append([1 for j in range(i)])
+
+    for i in range(2, len(t_pascal)):
+        prev_list = t_pascal[i - 1]
+        curr_list = t_pascal[i]
+        for j in range(len(prev_list) - 1):
+            curr_list[j + 1] = prev_list[j] + prev_list[j + 1]
+
+    return (t_pascal)

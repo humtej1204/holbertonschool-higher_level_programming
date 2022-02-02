@@ -4,18 +4,19 @@
 
 
 import sys
+import os
 
 
-save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
-load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
+save = __import__('5-save_to_json_file').save_to_json_file
+load = __import__('6-load_from_json_file').load_from_json_file
 
-try:
-    f = load_from_json_file("add_item.json")
-except:
-    f = []
+filename = "add_item.json"
+list_json = []
 
-argc = len(sys.argv)
-for i in range(1, argc):
-    f.append(sys.argv[i])
+if os.path.isfile(filename):
+    list_json = load(filename)
 
-save_to_json_file(f, "add_item.json")
+for item in sys.argv[1:]:
+    list_json.append(item)
+
+save(list_json, filename)

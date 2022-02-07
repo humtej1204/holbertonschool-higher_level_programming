@@ -55,14 +55,13 @@ class Base():
     def load_from_file(cls):
         f = cls.__name__ + ".json"
         ls = []
-        if not f:
+        try:
+            with open(f, 'r') as file:
+                x = file.read()
+                y = cls.from_json_string(x)
+                for a in range(len(y)):
+                    z = cls.create(**y[a])
+                    ls.append(z)
             return ls
-
-        with open(f, 'r') as file:
-            x = file.read()
-            y = cls.from_json_string(x)
-            for a in range(len(y)):
-                z = cls.create(**y[a])
-                ls.append(z)
-
-        return ls
+        except:
+            return ls

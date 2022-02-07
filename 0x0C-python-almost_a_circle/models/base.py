@@ -36,14 +36,18 @@ class Base():
 
     @staticmethod
     def from_json_string(json_string):
-        if json_string is None or len(json_string) == 0:
-            return "[]"
+        if json_string is None or json_string == "":
+            ls = []
+            return ls
         else:
             return json.loads(json_string)
 
     @classmethod
     def create(cls, **dictionary):
-        dummy = cls(1, 1, 1, 1)
+        if cls.__name__ == "Rectangle":
+            dummy = cls(1, 1)
+        if cls.__name__ == "Square":
+            dummy = cls(1)
         dummy.update(**dictionary)
         return dummy
 
@@ -51,14 +55,13 @@ class Base():
     def load_from_file(cls):
         f = cls.__name__ + ".json"
         ls = []
-        if not f:
+        try:
+            with open(f, 'r') as file:
+                x = file.read()
+                y = cls.from_json_string(x)
+                for a in range(len(y)):
+                    z = cls.create(**y[a])
+                    ls.append(z)
             return ls
-
-        with open(f, 'r') as file:
-            x = file.read()
-            y = cls.from_json_string(x)
-            for a in range(len(y)):
-                z = cls.create(**y[a])
-                ls.append(z)
-
-        return ls
+        except:
+            return ls

@@ -15,7 +15,7 @@ class TestBase(unittest.TestCase):
     """
     A class to test Base Class
     """
-    '''def test_pep8_base(self):
+    def test_pep8_base(self):
         """
         Test that checks PEP8
         """
@@ -24,7 +24,7 @@ class TestBase(unittest.TestCase):
         self.assertEqual(
             check.total_errors, 0,
             "Found code style errors (and warnings)."
-        )'''
+        )
 
     def test_id_as_positive(self):
         """

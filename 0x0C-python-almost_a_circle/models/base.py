@@ -63,5 +63,5 @@ class Base():
                     z = cls.create(**y[a])
                     ls.append(z)
             return ls
-        except:
+        except Exception:
             return ls

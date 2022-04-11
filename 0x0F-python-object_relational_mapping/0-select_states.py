@@ -18,6 +18,9 @@ if __name__ == "__main__":
         exit()
 
     def show_data():
+        """
+        Query data base
+        """
         cursor = database.cursor()
         cursor.execute('SELECT * FROM states')
         table = cursor.fetchall()

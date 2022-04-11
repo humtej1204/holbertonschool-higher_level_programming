@@ -1,33 +1,26 @@
-#!/usr/bin/python
-
+#!/usr/bin/python3
 import MySQLdb
-import sys
+from sys import argv
 
-if __name__ == "__main__":
+
+def mysqlconnnect():
+    """
+    Connecting and quering data base
+    """
     try:
-        database = MySQLdb.connect(
-                host='localhost',
-                user=sys.argv[1],
-                passwd=sys.argv[2],
-                db=sys.argv[3],
-                port=3306
-                )
-
+        db_connection = MySQLdb.connect(host="localhost", port=3306,
+                                        user=argv[1], passwd=argv[2],
+                                        db=argv[3], charset="utf8")
     except Exception:
-        print("No se puede acceder a la base de datos.")
-        exit()
+        print("can't connect to database")
+        return 0
+    cur = db_connection.cursor()
+    cur.execute("SELECT * FROM states ORDER BY id ASC")
+    query_rows = cur.fetchall()
+    for row in query_rows:
+        print(row)
+    cur.close()
+    db_connection.close()
 
-    def show_data():
-        """
-        Query data base
-        """
-        cursor = database.cursor()
-        cursor.execute('SELECT * FROM states')
-        table = cursor.fetchall()
-        if table:
-            for row in table:
-                print(row)
-        cursor.close()
 
-    show_data()
-    database.close()
+mysqlconnnect()

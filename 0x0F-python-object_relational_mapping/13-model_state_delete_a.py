@@ -1,24 +1,21 @@
 #!/usr/bin/python3
-"""Initialize database"""
-from model_state import Base, State
-from sqlalchemy import (create_engine)
-from sqlalchemy.orm import sessionmaker
-from sys import argv
+""" This script lists all State objects with the name passed as
+argument from database hbtn_0e_6_usa """
+if __name__ == '__main__':
+    from sqlalchemy import create_engine
+    from sys import argv
+    from model_state import Base, State
+    from sqlalchemy.orm import sessionmaker
 
+    engine = create_engine("""mysql+mysqldb://{}:{}@localhost/{}"""
+                           .format(argv[1], argv[2], argv[3]))
 
-if __name__ == "__main__":
-    """
-    Conecting database and quering
-    """
-    sql = 'mysql+mysqldb://{}:{}@localhost:3306/{}'
-    engine = create_engine(sql.format(argv[1],
-                                      argv[2], argv[3]), pool_pre_ping=True)
     Base.metadata.create_all(engine)
-    Session = sessionmaker()
-    Session.configure(bind=engine)
+    Session = sessionmaker(bind=engine)
     session = Session()
-    for obj in session.query(State):
-        if 'a' in obj.name:
-            session.delete(obj)
+    states = session.query(State)
+    states = states.filter(State.name.like('%a%')).order_by(State.id)
+    for state in states:
+        session.delete(state)
     session.commit()
     session.close()

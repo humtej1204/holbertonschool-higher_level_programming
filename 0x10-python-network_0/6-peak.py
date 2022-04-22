@@ -1,47 +1,34 @@
 #!/usr/bin/python3
-# Python program for implementation of heap Sort
-
-# To heapify subtree rooted at index i.
-# n is size of heap
-def heapify(arr, n, i):
-    largest = i  # Initialize largest as root
-    la = 2 * i + 1     # left = 2*i + 1
-    r = 2 * i + 2     # right = 2*i + 2
-
-    # See if left child of root exists and is
-    # greater than root
-    if la < n and arr[i] < arr[la]:
-        largest = la
-
-    # See if right child of root exists and is
-    # greater than root
-    if r < n and arr[largest] < arr[r]:
-        largest = r
-
-    # Change root, if needed
-    if largest != i:
-        arr[i], arr[largest] = arr[largest], arr[i]  # swap
-
-        # Heapify the root.
-        heapify(arr, n, largest)
-
-# The main function to sort an array of given size
+"""contains the function find_peak"""
 
 
 def find_peak(list_of_integers):
-    arr = list_of_integers
-    n = len(arr)
-
-    # Build a maxheap.
-    # Since last parent will be at ((n//2)-1) we can start at that location.
-    try:
-        for i in range(n // 2 - 1, -1, -1):
-            heapify(arr, n, i)
-
-    # One by one extract elements
-        for i in range(n-1, 0, -1):
-            arr[i], arr[0] = arr[0], arr[i]   # swap
-            heapify(arr, i, 0)
-        return(arr[-1])
-    except Exception:
+    """finds a peak in a list of unsorted integers"""
+    if not list_of_integers:
         return None
+
+    length = len(list_of_integers)
+    half = int(length / 2)
+
+    # Validate Length only 3.
+    if half + 1 >= length and half - 1 < 0:
+        return list_of_integers[half]
+    elif half - 1 < 0:
+        if list_of_integers[half] > list_of_integers[half + 1]:
+            return list_of_integers[half]
+        else:
+            return list_of_integers[half + 1]
+    elif half + 1 >= length:
+        if list_of_integers[half] > list_of_integers[half - 1]:
+            return list_of_integers[half]
+        else:
+            return list_of_integers[half - 1]
+
+    if list_of_integers[half - 1] < list_of_integers[half]\
+       > list_of_integers[half + 1]:
+        return list_of_integers[half]
+
+    if list_of_integers[half + 1] > list_of_integers[half - 1]:
+        return find_peak(list_of_integers[half:])
+
+    return find_peak(list_of_integers[:half])

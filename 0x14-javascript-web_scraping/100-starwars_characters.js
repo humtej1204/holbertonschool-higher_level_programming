@@ -5,7 +5,7 @@ const url = `https://swapi-api.hbtn.io/api/films/${id}`;
 
 axios.get(url)
   .then(({ data }) => {
-    /*console.log(data.characters);*/
+    /* console.log(data.characters); */
     data.characters.forEach((char) => {
       axios.get(char)
         .then(({ data }) => console.log(data.name))
